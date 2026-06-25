@@ -1,0 +1,340 @@
+[
+    {
+        "id": "6ebdd08918ba1fd1",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b6e323ee3b83614c",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "${SERVIDOR}",
+        "port": "${PUERTO_MQTTS}",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "6b72bc936a62e63a",
+        "type": "tls-config",
+        "name": "",
+        "certType": "files",
+        "cert": "",
+        "key": "",
+        "p12": "",
+        "p12name": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": true,
+        "alpnprotocol": "",
+        "certEnv": "",
+        "keyEnv": "",
+        "caEnv": ""
+    },
+    {
+        "id": "4e28fbe6a04994f0",
+        "type": "mqtt-broker",
+        "name": "iot25",
+        "broker": "${SERVIDOR}",
+        "port": "${PUERTO_MQTTS}",
+        "tls": "6b72bc936a62e63a",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "bf12cd11a2ed9b94",
+        "type": "telegram bot",
+        "botname": "iiiooott",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": 300,
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": 6667,
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "0.0.0.0",
+        "localbotport": 8443,
+        "publicbotport": 8443,
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "18b7f72b68384d28",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": 8086,
+        "protocol": "http",
+        "database": "database",
+        "name": "anana",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "${INFLUX_URL}",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "e4addc4ad64e241a",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": 8086,
+        "protocol": "http",
+        "database": "database",
+        "name": "IoT",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://influxdb:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "d70f0bf6c1796028",
+        "type": "telegram sender",
+        "z": "6ebdd08918ba1fd1",
+        "name": "",
+        "bot": "bf12cd11a2ed9b94",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 710,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b9860ab2596e32f7",
+        "type": "inject",
+        "z": "6ebdd08918ba1fd1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload.chatId",
+                "v": "606441203",
+                "vt": "str"
+            },
+            {
+                "p": "payload.type",
+                "v": "message",
+                "vt": "str"
+            },
+            {
+                "p": "payload.content",
+                "v": "hola mundo",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 370,
+        "y": 240,
+        "wires": [
+            [
+                "d70f0bf6c1796028"
+            ]
+        ]
+    },
+    {
+        "id": "1e40e6b31969d462",
+        "type": "telegram command",
+        "z": "6ebdd08918ba1fd1",
+        "name": "",
+        "command": "/start",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "scope": "default",
+        "bot": "bf12cd11a2ed9b94",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 330,
+        "y": 360,
+        "wires": [
+            [
+                "ca8ae09beda517e7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ca8ae09beda517e7",
+        "type": "function",
+        "z": "6ebdd08918ba1fd1",
+        "name": "function 1",
+        "func": "var opts = {\n    reply_markup: JSON.stringify({\n        keyboard: [\n            ['Temperatura'],],\n        'resize_keyboard': true,\n        'one_time_keyboard': false\n    })\n};\n\nmsg.error = false;\nmsg.payload.content = 'Bienvenidoxdddddd';\nmsg.payload.options = opts;\nmsg.payload.type = \"message\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 360,
+        "wires": [
+            [
+                "e499469feae2f2da"
+            ]
+        ]
+    },
+    {
+        "id": "e499469feae2f2da",
+        "type": "telegram sender",
+        "z": "6ebdd08918ba1fd1",
+        "name": "",
+        "bot": "bf12cd11a2ed9b94",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 790,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "578eb3700b0fd02b",
+        "type": "telegram receiver",
+        "z": "6ebdd08918ba1fd1",
+        "name": "",
+        "bot": "bf12cd11a2ed9b94",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "hasinput": false,
+        "inputs": 0,
+        "handleallupdates": false,
+        "handleprocessupdates": false,
+        "x": 370,
+        "y": 500,
+        "wires": [
+            [
+                "3fa7cac3b43209cb"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3fa7cac3b43209cb",
+        "type": "switch",
+        "z": "6ebdd08918ba1fd1",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Temperatura",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 500,
+        "wires": [
+            [
+                "cb4901f7ce71b7c8"
+            ]
+        ]
+    },
+    {
+        "id": "cb4901f7ce71b7c8",
+        "type": "influxdb in",
+        "z": "6ebdd08918ba1fd1",
+        "influxdb": "",
+        "name": "",
+        "query": "from(bucket: \"Sensores Remotos\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mediciones\")\n  |> filter(fn: (r) => r[\"_field\"] == \"temperatura\")\n  |> last()",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "organisation",
+        "x": 740,
+        "y": 500,
+        "wires": [
+            [
+                "2190011e88f22cb8"
+            ]
+        ]
+    },
+    {
+        "id": "2190011e88f22cb8",
+        "type": "debug",
+        "z": "6ebdd08918ba1fd1",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 640,
+        "wires": []
+    }
+]
